@@ -1,0 +1,16 @@
+<div class="row">
+  <add-todo
+    [errorMessage]="errorMessage()"
+    (saveTodo)="saveTodo($any($event))"
+  ></add-todo>
+
+  <div class="card" *ngIf="loding() === false; else loadingTodo">
+    <list-todo
+      [totalTodos]="getTotalTodos()"
+      [todos]="todos()"
+      [errorMessage]="errorMessage()"
+      (deleteTodo)="deleteTodo($event)"
+    ></list-todo>
+  </div>
+  <ng-template #loadingTodo>loading Todo...</ng-template>
+</div>

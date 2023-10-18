@@ -1,0 +1,30 @@
+<h4>{{ pageTitle }}:</h4>
+
+<form [formGroup]="formGroup" (ngSubmit)="save()" class="card">
+  <label>Username: </label>
+  <div class="alert alert-danger"></div>
+  <input type="text" formControlName="username" />
+  <span *ngIf="username.invalid && (username.touched || username.dirty)">
+    <span *ngIf="username.errors?.['required']"> username is required </span>
+    <p *ngIf="username.errors?.['minlength']">
+      Username length should be >=
+      {{ username.errors['minlength'].requiredLength }}
+    </p>
+  </span>
+
+  <br /><br />
+  <label>Todo: </label>
+  <input type="text" formControlName="todo" />
+  <span *ngIf="todo.touched && todo.invalid">
+    <span *ngIf="todo.errors['required']"> todo is required </span>
+    <p *ngIf="todo.errors['minlength']">
+      todo length should be >= {{ todo.errors['minlength'].requiredLength }}
+    </p>
+  </span>
+  <br /><br />
+  <button type="submit" [disabled]="!formGroup.valid">Add new todo</button>
+</form>
+
+<div *ngIf="errorMessage" class="alert alert-danger">
+  Error: {{ errorMessage }}
+</div>

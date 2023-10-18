@@ -1,0 +1,10 @@
+.card {
+  margin: 16px;
+  padding: 8px;
+  background-color: lightgray;
+}
+.card__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}

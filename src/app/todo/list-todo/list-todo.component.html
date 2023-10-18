@@ -1,0 +1,30 @@
+<ng-container *ngIf="todos" class="card">
+  <h3>
+    {{ pageTitle }}:
+    <span>we have a {{ totalTodos }} todos</span>
+  </h3>
+
+  <!-- 
+The .slice() creates a copy of the array and the .reverse() does the reverse action on your array.
+
+  -->
+  <div *ngFor="let todo of todos?.slice().reverse()">
+    <p>#{{ todo.id }}</p>
+
+    <p>
+      Created by user <b>{{ todo.username }}</b>
+      <img
+        *ngIf="todo.userAvatar"
+        [src]="todo.userAvatar"
+        class="card__avatar"
+        alt="{{ todo.username }}"
+      />
+    </p>
+    <p>{{ todo.creationDate | date: 'dd - MM-YYYY' }}</p>
+    <button (click)="delete(todo)" type="submit">Delete</button>
+  </div>
+</ng-container>
+
+<div *ngIf="errorMessage" class="alert alert-danger">
+  Error: {{ errorMessage | json }}
+</div>
